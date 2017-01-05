@@ -12,8 +12,24 @@ var SongQueue = Backbone.Collection.extend({
         this.playFirst();
       }
     });
+    this.on('dequeue', function() {
+      this.remove(this.at(0));
+    });
+    this.on('ended', function() {
+      this.at(0).dequeue();
+      if (this.length > 0) {
+        this.playFirst();
+      }
+      // this.remove();
+    });
   },
   playFirst: function() {
-    console.log("meow?")
-  }
+    this.at(0).play();
+    // this.at(0).ended();
+  },
+  // eQListner: function() {
+  //   this.model.on('dequeue', function() {
+  //     console.log("meow");
+  //   });
+  // }
 });

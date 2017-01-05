@@ -23,18 +23,20 @@ describe('SongQueue', function() {
     it('plays it if it is the only song in the song queue', function() {
       var songQueue = new SongQueue();
       songQueue.add(songData1);
+      console.log(songQueue);
+      songQueue.add(songData2);
+      console.log(songQueue, "2")
       expect(playSpy).to.have.been.called;
     });
 
     it('does nothing if it is not the only song in the song queue', function() {
       var songQueue = new SongQueue(songData1);
       songQueue.add(songData2);
-      console.log(songQueue);
       expect(playSpy).to.have.not.been.called;
     });
   });
 
-  xdescribe('when a song ends', function() {
+  describe('when a song ends', function() {
     it('removes the song from the queue', function() {
       var songQueue = new SongQueue([songData1, songData2]);
       song2 = songQueue.at(1);
@@ -57,7 +59,7 @@ describe('SongQueue', function() {
     });
   });
 
-  xdescribe('when a song is dequeued', function() {
+  describe('when a song is dequeued', function() {
     it('removes the song', function() {
       removeSpy = sinon.spy(SongQueue.prototype, 'remove');
       var songQueue = new SongQueue(songData1);
