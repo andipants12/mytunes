@@ -6,17 +6,17 @@ var SongQueue = Backbone.Collection.extend({
   initialize: function() {
 
     //enqueue
-    this.on('enqueue', function() {
-      console.log(this, "SQ enqueue");
-      // this.add(this.model);
-    });
+    // this.on('enqueue', function() {
+    //   console.log(this, "SQ enqueue");
+    //   this.add(this.model);
+    // });
 
     this.on('add', function() {
       this.at(0).enqueue();
       if (this.length === 1) {
         this.playFirst();
       }
-    });
+    }, this);
 
     //dequeue
     this.on('dequeue', function() {
