@@ -18,13 +18,27 @@ var AppModel = Backbone.Model.extend({
       this.set('currentSong', song);
     }, this);
 
+    // params.library.on('ended', function() {
+    //   console.log('pleaaase work!');
+    // });
+
     //listen for enqueue on the lib
     params.library.on('enqueue', function(song) {
-      var addition = new SongQueue(this.get('songQueue').add(song));
-      this.set('songQueue', addition);
+      console.log(this.get('songQueue').length, "before EQ");
+
+      // var addition = new SongQueue(this.get('songQueue').add(song));
+      this.get('songQueue').add(song);
+      console.log(this.get('songQueue').length, "after EQ");
     }, this);
       //get the songqueue
         //.add the song that was clicked
+
+    params.library.on('dequeue', function(song) {
+      console.log(this.get('songQueue').length, "before");
+      var removed = this.get('songQueue').remove(song.id);
+      console.log(this.get('songQueue').length, "after");
+      // this.set('songQueue', removed);
+    }, this);
   }
 
 });

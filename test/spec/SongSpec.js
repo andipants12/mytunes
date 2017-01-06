@@ -17,6 +17,7 @@ describe('SongModel', function() {
 
   it('has an enqueue method that triggers an "enqueue" event', function() {
     model.enqueue();
+    console.log(model, "model in song spec")
     expect(model.trigger).to.have.been.calledWith('enqueue', model);
   });
 
