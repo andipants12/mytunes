@@ -6,26 +6,20 @@ var PlayerView = Backbone.View.extend({
   el: '<audio controls autoplay />',
 
   initialize: function() {
-    ///////////////////////////////////////////////////
-    var song = this;
+    this.$el.on('ended', (function() { this.model.ended() }).bind(this));
 
-    this.$el.on('ended', function() {
-      song.model.ended();
-    });
-    // this.on('dequeue', function() {
-    //   console.log('dequeue was triggered')
-    //   this.setSong(this.at(0));
-    // });
-    ///////////////////////////////////////////////////
   },
 
   setSong: function(song) {
     this.model = song;
+    if(!this.model) {
+      this.el.pause();
+    }
     this.render();
   },
 
   render: function() {
-    console.log(this.model, "model pv render")
+    //when the src attribute is set to an empty string ==> causes the player to STOP!
     return this.$el.attr('src', this.model ? this.model.get('url') : '');
   }
 
