@@ -42,9 +42,10 @@ describe('PlayerView', function() {
     songQueue.add(thirdSong);
     // play the first song
     songQueue.playFirst();
+    debugger;
     expect(appView.playerView.model).to.equal(firstSong);
-    console.log($(appView.playerView.el), "jquery obj")
     // Simulate the end of the first song
+    console.log($(appView.playerView.el), "meow")
     $(appView.playerView.el).trigger('ended');
     expect(appView.playerView.model).to.equal(secondSong);
     // Simulate the end of the second song

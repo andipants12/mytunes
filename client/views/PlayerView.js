@@ -10,7 +10,7 @@ var PlayerView = Backbone.View.extend({
     var song = this;
 
     this.$el.on('ended', function() {
-      song.model.dequeue();
+      song.model.ended();
     });
     // this.on('dequeue', function() {
     //   console.log('dequeue was triggered')
